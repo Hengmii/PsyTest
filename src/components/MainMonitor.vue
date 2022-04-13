@@ -24,20 +24,9 @@
           <i class="el-icon-menu"></i>
           <span slot="title" v-on:click="onHistory('loginForm')">咨询记录</span>
         </el-menu-item>
-        <p style="margin-left:20%;">会话列表</p>
-        
-        <el-menu-item index="3">
-          <i class="el-icon-s-check"></i>
-          <span slot="title" >
-            <span style="margin-left:20px">咨询师A</span>
-          </span>
-        </el-menu-item>
-
-        <el-menu-item index="4">
-          <i class="el-icon-s-check"></i>
-          <span slot="title" >
-            <span style="margin-left:20px">咨询师B</span>
-          </span>
+        <el-menu-item index="2">
+          <i class="el-icon-menu"></i>
+          <span slot="title" v-on:click="onSession('loginForm')">会话记录</span>
         </el-menu-item>
         <!-- <el-menu-item index="3">
           <i class="el-icon-document"></i>
@@ -557,6 +546,9 @@ export default {
     // },
     onHistory(formName) {
       this.$router.push('/ConsultHistoryM');
+    },
+    onSession(formName) {
+      this.$router.push('/SessionM');
     }
     // ,
     // onUser(formName) {

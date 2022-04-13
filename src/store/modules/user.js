@@ -1,4 +1,4 @@
- import tim from '../../Web/Demo/src/tim'
+ import tim from '../../tim'
 const user = {
   state: {
     currentUserProfile: {},

@@ -301,7 +301,7 @@
 </style>
 
 <script>
-import {getListApi,saveApi,addApi} from '@/api/request'
+import {getListApi,saveApi,addApi,editUserApi} from '@/api/request'
 export default {
   data() {
     const nameValid=(rule,value,cb)=>{
@@ -518,10 +518,11 @@ export default {
     },
     // 禁用============
    clickDel(row) {
-      saveApi({id:row.id,score:0,identity:3,state:0}).then(res=>{
+      editUserApi({id:row.id,state:0,identity:3}).then(res=>{
+      // saveApi({id:row.id,score:0,identity:3,state:0}).then(res=>{
         if(res.data.status.code===0){
           this.$message.success('禁用成功')
-          this.getConsultantInfo()
+          this.getMonitorInfo()
         }else{
           this.$message.error('禁用失败')
         }

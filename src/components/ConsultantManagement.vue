@@ -318,7 +318,7 @@
 import * as vm from "vm";
 import Vue from "vue";
 
-import {addApi,saveApi} from '@/api/request.js'
+import {addApi,saveApi,editUserApi} from '@/api/request.js'
 
 export default {
   data() {
@@ -571,7 +571,8 @@ export default {
 
     },
     clickDel(row) {
-      saveApi({id:row.id,score:row.score,identity:2,state:0}).then(res=>{
+      editUserApi({id:row.id,state:0,identity:2}).then(res=>{
+      // saveApi({id:row.id,score:row.score,identity:2,state:0}).then(res=>{
         if(res.data.status.code===0){
           this.$message.success('禁用成功')
           this.getConsultantInfo()

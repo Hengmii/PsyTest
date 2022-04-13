@@ -24,24 +24,14 @@
           <span slot="title" v-on:click="onMain('loginForm')">首页</span>
         </el-menu-item>
         <el-menu-item index="2">
-          <i class="el-icon-menu"></i>
+          <i class="el-icon-time"></i>
           <span slot="title" v-on:click="onHistory('loginForm')">咨询记录</span>
         </el-menu-item>
-        <p style="margin-left: 20%">会话列表</p>
-
         <el-menu-item index="3">
-          <i class="el-icon-s-check"></i>
-          <span slot="title">
-            <span style="margin-left: 20px" @click="onCurrentConversation()">张先生</span>
-          </span>
+          <i class="el-icon-chat-dot-round"></i>
+          <span slot="title" v-on:click="onSession('loginForm')">会话列表</span>
         </el-menu-item>
 
-        <el-menu-item index="4">
-          <i class="el-icon-s-check"></i>
-          <span slot="title">
-            <span style="margin-left: 20px">周小姐</span>
-          </span>
-        </el-menu-item>
         <!-- <el-menu-item index="3">
           <i class="el-icon-document"></i>
           <span slot="title" v-on:click="onSchedule('loginForm')">排班表</span>
@@ -418,6 +408,8 @@ export default {
     this.getScheduleList(); // 获取日历信息
   },
   methods: {
+    handleOpen(){},
+    handleClose(){},
     // 获取今日时长
     async getTimeInfo() {
       const res = await fetch(
@@ -503,8 +495,8 @@ export default {
     onHistory(formName) {
       this.$router.push("/ConsultHistoryC");
     },
-    onCurrentCnversation() {
-      this.$router.push();
+    onSession() {
+      this.$router.push('/SessionC');
     }
     // ,
     // onUser(formName) {

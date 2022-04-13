@@ -1,8 +1,8 @@
-import tim from 'tim'
+import tim from '../../tim'
 import TIM from 'tim-js-sdk/tim-js-friendship'
 import store from '../index'
-import { titleNotify } from '../../src/utils'
-import { filterCallingMessage } from '../../src/utils/common'
+import { titleNotify } from '../../utils'
+import { filterCallingMessage } from '../../utils/common'
 const conversationModules = {
   state: {
     currentConversation: {},

@@ -11,9 +11,16 @@ import ConsultHistoryM from '../components/ConsultHistoryM'
 import UserManagement from '../components/UserManagement'
 import MainConsult from '../components/MainConsult'
 import MainMonitor from '../components/MainMonitor'
+import SessionC from '../components/SessionC'
+import SessionM from '../components/SessionM'
+// import login from '../components/user/login'
 
 import axios from 'axios'
 
+const routerPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return routerPush.call(this, location).catch(error=> error)
+}
 
 Vue.use(Router)
 
@@ -69,6 +76,19 @@ export default new Router({
       path: '/UserManagement',
       name: 'UserManagement',
       component: UserManagement
+    },{
+      path: '/SessionC',
+      name: 'SessionC',
+      component: SessionC
+    },{
+      path: '/SessionM',
+      name: 'SessionM',
+      component: SessionM
     }
+    // ,{
+    //   path: '/user/login',
+    //   name: 'login',
+    //   component: login
+    // }
   ]
 })

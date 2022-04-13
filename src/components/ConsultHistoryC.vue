@@ -21,24 +21,14 @@
           <span slot="title" v-on:click="onMain('loginForm')">首页</span>
         </el-menu-item>
         <el-menu-item index="2">
-          <i class="el-icon-menu"></i>
+          <i class="el-icon-time"></i>
           <span slot="title" v-on:click="onHistory('loginForm')">咨询记录</span>
         </el-menu-item>
-        <p style="margin-left:20%;">会话列表</p>
-        
         <el-menu-item index="3">
-          <i class="el-icon-s-check"></i>
-          <span slot="title" >
-            <span style="margin-left:20px">张先生</span>
-          </span>
+          <i class="el-icon-chat-dot-round"></i>
+          <span slot="title" v-on:click="onSession('loginForm')">会话列表</span>
         </el-menu-item>
 
-        <el-menu-item index="4">
-          <i class="el-icon-s-check"></i>
-          <span slot="title" >
-            <span style="margin-left:20px">周小姐</span>
-          </span>
-        </el-menu-item>
       </el-menu>
     </el-aside>
 
@@ -57,11 +47,11 @@
         prefix-icon="el-icon-search"
         v-model="input2">
       </el-input>
-      <el-date-picker
+      <!-- <el-date-picker
         v-model="value1"
         type="date"
         placeholder="选择日期">
-      </el-date-picker>
+      </el-date-picker> -->
     </div>
   <el-table
     :data="tableData"
@@ -70,31 +60,31 @@
     <el-table-column
       prop="name"
       label="姓名"
-      width="120">
+      width="150">
     </el-table-column>
     
     <el-table-column
       prop="create_time"
       label="咨询日期"
+      width="200">
+    </el-table-column>
+
+    <el-table-column
+      prop="consult_score"
+      label="咨询评级"
       width="150">
     </el-table-column>
 
     <el-table-column
-      prop="name"
-      label="咨询评级"
-      width="120">
-    </el-table-column>
-
-    <el-table-column
-      prop="name"
+      prop="comment"
       label="咨询评价"
-      width="120">
+      width="200">
     </el-table-column>
 
     <el-table-column
-      prop="name"
+      prop="help"
       label="咨询求助"
-      width="120">
+      width="200">
     </el-table-column>
 
     <el-table-column
@@ -136,15 +126,20 @@ export default {
     this.getSessionList();
   },
   methods: {
+    handleOpen(){},
+    handleClose(){},
+
     async getSessionList() {
-      
-      const res = await fetch(`http://139.196.111.161:8080/session/list?`);
+      this.tableData = []
+      const res = await fetch(`http://139.196.111.161:8080/session/list?id=2`);
       const result = await res.json();
+      console.log("res",res);
       debugger;
       let list = result["session_list"];
       this.tableData.push(...list);
       this.orgList.push(...list);
     },
+
     onMain(formName) {
       this.$router.push('/MainConsult');
     },
@@ -159,6 +154,9 @@ export default {
     // },
     onHistory(formName) {
       this.$router.push('/ConsultHistoryC');
+    },
+    onSession(formName) {
+      this.$router.push('SessionC')
     }
     // ,
     // onUser(formName) {

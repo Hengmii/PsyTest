@@ -67,7 +67,7 @@ export default {
 
     return {
       form: {
-        userID: 'Aliya',
+        userID: '咨询师',
         password: ''
       },
       rules: {

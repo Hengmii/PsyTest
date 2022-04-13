@@ -8031,13 +8031,18 @@
 
 "tim-js-sdk@^2.18.0":
   "integrity" "sha512-JB+o8TSrA3zcyJPuS6RNcTItTavTeSrmL3Pq1qioayTt6mCduuqYpGVwX6CvSxUUZOKMZF+j731QytijG9scHg=="
-  "resolved" "https://r.cnpmjs.org/tim-js-sdk/-/tim-js-sdk-2.18.0.tgz"
+  "resolved" "https://registry.npmjs.org/tim-js-sdk/-/tim-js-sdk-2.18.0.tgz"
   "version" "2.18.0"
 
 "tim-upload-plugin@^1.0.4":
   "integrity" "sha512-Ib/Ql5vdKoLg2wSFBQ34nzBnaUFa6IxiV8060BF+RnWVlhBZSd3MpBXT32wWcmPj/Sl2yOSCM+dC4fn1sm+y/w=="
-  "resolved" "https://r2.cnpmjs.org/tim-upload-plugin/-/tim-upload-plugin-1.0.4.tgz"
+  "resolved" "https://registry.npmjs.org/tim-upload-plugin/-/tim-upload-plugin-1.0.4.tgz"
   "version" "1.0.4"
+
+"tim-wx-sdk@^2.18.0":
+  "integrity" "sha512-Dz6aHpaCdk1ST/ZzltliSFHBsB5CdFU+q2NpFZc9PV8br0a5F2GyYgrdLn1Yqt8YntEwMReaud3LUY638zNJug=="
+  "resolved" "https://registry.npmjs.org/tim-wx-sdk/-/tim-wx-sdk-2.18.0.tgz"
+  "version" "2.18.0"
 
 "time-stamp@^2.0.0":
   "integrity" "sha1-kX4KZpBWiHkOx7u94EBGJZr4P1c="
@@ -8522,6 +8527,11 @@
   "integrity" "sha1-dllNh31LEiNEBuhONSdcbVFBJcU="
   "resolved" "https://registry.npm.taobao.org/vue/download/vue-2.6.11.tgz?cache=0&sync_timestamp=1582745937656&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue%2Fdownload%2Fvue-2.6.11.tgz"
   "version" "2.6.11"
+
+"vuex@^3.1.2":
+  "integrity" "sha512-ETW44IqCgBpVomy520DT5jf8n0zoCac+sxWnn+hMe/CzaSejb/eVw2YToiXYX+Ex/AuHHia28vWTq4goAexFbw=="
+  "resolved" "https://r2.cnpmjs.org/vuex/-/vuex-3.6.2.tgz"
+  "version" "3.6.2"
 
 "watchpack@^1.4.0":
   "integrity" "sha1-S8EsLr6KonenHx0/FNaFx7RGzQA="

@@ -10,11 +10,13 @@
         </el-form-item>
         <el-form-item>
             <el-button class="login-button" type="primary" @click.native.prevent="onSubmit">登录</el-button>
+            <!-- <el-button @click="gologin">点我试试</el-button> -->
         </el-form-item>
      <el-dialog title="温馨提示" :visible.sync= "dialogVisible" width="30%" :before-close="handleClose">
         <span>请输入用户名和密码</span>
         <span slot="footer" class="dialog-footer">
-            <el-button type="primary" @click = "dialogVisible = false">确定</el-button> 
+            <el-button type="primary" @click = "dialogVisible = false">确定</el-button>
+            
         </span>
     </el-dialog>
     
@@ -76,12 +78,26 @@ import MainVue from './Main.vue';
                 this.$router.push('/MainMonitor');
               }
               if(returnInfo.identity == 2){
+                //IM登录
+                let promise = tim.login({userID: this.user.id, userSig: returnInfo.user_sig});
+                promise.then(function(imResponse) {
+                  console.log(imResponse.data); // 登录成功
+                  console.log(1111111111111111);
+                  if (imResponse.data.repeatLogin === true) {
+                    // 标识帐号已登录，本次登录操作为重复登录。v2.5.1 起支持
+                    console.log(imResponse.data.errorInfo);
+                  }
+                }).catch(function(imError) {
+                  console.warn('login error:', imError); // 登录失败的相关信息
+                });
+
                 this.$router.push('/MainConsult');
               } 
             }
             else{
               alert('用户名或密码不正确');
             }
+            
           }
           else{
             this.dialogVisible = true;
@@ -89,22 +105,7 @@ import MainVue from './Main.vue';
           }
         })
       },
-      handleClose(){
-
-      }
-
-
-
-        // onSubmit(formName){
-        //    this.$refs[formName].validate((valid) => {
-        //         if (valid) {
-        //             this.$router.push('/Main');
-        //         } else {
-        //             this.dialogVisible = true;
-        //             return false;
-        //         }
-        //     });
-        // }
+      handleClose(){}
     }
   }
 </script>
