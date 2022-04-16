@@ -14,8 +14,9 @@ import MainMonitor from '../components/MainMonitor'
 import SessionC from '../components/SessionC'
 import SessionM from '../components/SessionM'
 // import login from '../components/user/login'
-
+import Index from '../index.vue'
 import axios from 'axios'
+import CurrentConversation from "../components/conversation/current-conversation";
 
 const routerPush = Router.prototype.push
 Router.prototype.push = function push(location) {
@@ -83,7 +84,7 @@ export default new Router({
     },{
       path: '/SessionM',
       name: 'SessionM',
-      component: SessionM
+      component: Index
     }
     // ,{
     //   path: '/user/login',

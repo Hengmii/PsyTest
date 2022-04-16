@@ -8,13 +8,11 @@
         @close="handleClose"
         background-color="#0d193c"
         text-color="#fff"
-        active-text-color="#ffd04b"
-      >
+        active-text-color="#ffd04b">
         <div style="margin-left: 20px; margin-top: 20px">
           <el-avatar
             style="vertical-align: -20%"
-            src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-          >
+            src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png">
           </el-avatar>
           <span>欢迎，咨询师</span>
         </div>
@@ -338,7 +336,7 @@ export default {
           name: "咨询师1",
           tag: "1",
         },
-        { name: "咨询师2", tag: "0" },
+        {name: "咨询师2", tag: "0"},
       ],
       form: {
         id: null,
@@ -360,45 +358,45 @@ export default {
       scheduleList: [], // 日历信息
       tableData: [
         {
-          name:"张先生",
-          gender:"男",
-          phone:"13000000000",
-          time:"10:10",
-          date:"2022-04-1",
-          score:"4.4分",
-          comment:"咨询师很好"
-        },{
-          name:"小试",
-          gender:"女",
-          phone:"13000000000",
-          time:"12:09",
-          date:"2022-04-1",
-          score:"4.6分",
-          comment:"咨询师很好"
-        },{
-          name:"周小姐",
-          gender:"女",
-          phone:"13000000000",
-          time:"12:09",
-          date:"2022-04-1",
-          score:"4.6分",
-          comment:"咨询师很好"
-        },{
-          name:"小米",
-          gender:"男",
-          phone:"13000000000",
-          time:"10:10",
-          date:"2022-04-1",
-          score:"4.5分",
-          comment:"咨询师很好"
-        },{
-          name:"小候",
-          gender:"男",
-          phone:"13000000000",
-          time:"10:10",
-          date:"2022-04-1",
-          score:"4.4分",
-          comment:"咨询师很好"
+          name: "张先生",
+          gender: "男",
+          phone: "13000000000",
+          time: "10:10",
+          date: "2022-04-1",
+          score: "4.4分",
+          comment: "咨询师很好"
+        }, {
+          name: "小试",
+          gender: "女",
+          phone: "13000000000",
+          time: "12:09",
+          date: "2022-04-1",
+          score: "4.6分",
+          comment: "咨询师很好"
+        }, {
+          name: "周小姐",
+          gender: "女",
+          phone: "13000000000",
+          time: "12:09",
+          date: "2022-04-1",
+          score: "4.6分",
+          comment: "咨询师很好"
+        }, {
+          name: "小米",
+          gender: "男",
+          phone: "13000000000",
+          time: "10:10",
+          date: "2022-04-1",
+          score: "4.5分",
+          comment: "咨询师很好"
+        }, {
+          name: "小候",
+          gender: "男",
+          phone: "13000000000",
+          time: "10:10",
+          date: "2022-04-1",
+          score: "4.4分",
+          comment: "咨询师很好"
         }
       ]
     };
@@ -408,8 +406,10 @@ export default {
     this.getScheduleList(); // 获取日历信息
   },
   methods: {
-    handleOpen(){},
-    handleClose(){},
+    handleOpen() {
+    },
+    handleClose() {
+    },
     // 获取今日时长
     async getTimeInfo() {
       const res = await fetch(

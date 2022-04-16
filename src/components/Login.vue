@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="user" :rules="rules" label-width="8epx" class="login-box">
         <h2 class = "login-title"> 欢迎登录</h2>
         <el-form-item label="用户名" prop="id">
-            <el-input type="text" v-model="user.id" placeholder="请输入用户名" ></el-input> 
+            <el-input type="text" v-model="user.id" placeholder="请输入用户名" ></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
             <el-input type="password" v-model="user.password" placeholder="请输入密码" ></el-input>
@@ -16,13 +16,13 @@
         <span>请输入用户名和密码</span>
         <span slot="footer" class="dialog-footer">
             <el-button type="primary" @click = "dialogVisible = false">确定</el-button>
-            
+
         </span>
     </el-dialog>
-    
+
     </el-form>
 
-   
+
   </div>
 </template>
 
@@ -56,7 +56,7 @@ import MainVue from './Main.vue';
           if(valid){
             let s = 'http://139.196.111.161:8080/user/login?username='+this.user.id+'&password='+this.user.password+'&identity=0';
             const res = await fetch (s,{
-              
+
               method: 'GET',
               headers: {
                 "Content-Type": "application/json;charset-utf-8;"
@@ -75,6 +75,18 @@ import MainVue from './Main.vue';
                 this.$router.push('/Main');
               }
               if(returnInfo.identity == 3){
+                let promise = tim.login({userID: this.user.id, userSig: returnInfo.user_sig});
+                promise.then(function(imResponse) {
+                  console.log(imResponse.data); // 登录成功
+                  console.log(1111111111111111);
+                  if (imResponse.data.repeatLogin === true) {
+                    // 标识帐号已登录，本次登录操作为重复登录。v2.5.1 起支持
+                    console.log(imResponse.data.errorInfo);
+                  }
+                }).catch(function(imError) {
+                  console.warn('login error:', imError); // 登录失败的相关信息
+                });
+
                 this.$router.push('/MainMonitor');
               }
               if(returnInfo.identity == 2){
@@ -92,12 +104,12 @@ import MainVue from './Main.vue';
                 });
 
                 this.$router.push('/MainConsult');
-              } 
+              }
             }
             else{
               alert('用户名或密码不正确');
             }
-            
+
           }
           else{
             this.dialogVisible = true;
@@ -111,7 +123,7 @@ import MainVue from './Main.vue';
 </script>
 
 <style scoped>
-    .background{  
+    .background{
         background: url("../img/login_img.jpg") no-repeat;
         background-position: center;
         height: 100%;

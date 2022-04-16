@@ -1,5 +1,5 @@
 <template>
-  <el-container style="height: 1200px; border: 1px solid #B3C0D1">
+  <el-container style="height: 1080px; border: 1px solid #B3C0D1">
     <el-aside width="200px" style="background-color: rgb(13, 25, 60)">
       <el-menu
         default-active="1"
@@ -9,24 +9,25 @@
         background-color="#0d193c"
         text-color="#fff"
         active-text-color="#ffd04b">
-        
+
         <div style="margin-left:20px;margin-top:20px">
-      <el-avatar style="vertical-align: -20%" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png">
-      </el-avatar>
-      <span>欢迎，督导</span>
-    </div>
+          <el-avatar style="vertical-align: -20%"
+                     src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png">
+          </el-avatar>
+          <span>欢迎，督导</span>
+        </div>
 
         <el-menu-item index="1">
           <i class="el-icon-menu"></i>
           <span slot="title" v-on:click="onMain('loginForm')">首页</span>
         </el-menu-item>
         <el-menu-item index="2">
-          <i class="el-icon-menu"></i>
+          <i class="el-icon-time"></i>
           <span slot="title" v-on:click="onHistory('loginForm')">咨询记录</span>
         </el-menu-item>
-        <el-menu-item index="2">
-          <i class="el-icon-menu"></i>
-          <span slot="title" v-on:click="onSession('loginForm')">会话记录</span>
+        <el-menu-item index="3">
+          <i class="el-icon-chat-dot-round"></i>
+          <span slot="title" v-on:click="onSession('loginForm')">会话列表</span>
         </el-menu-item>
         <!-- <el-menu-item index="3">
           <i class="el-icon-document"></i>
@@ -53,7 +54,7 @@
         <span style="text-align: left; font-size: 25px">心理学院热线咨询</span>
       </el-header>
 
-      <div class = "top-box">
+      <div class="top-box">
         <!-- 卡片1 -->
         <el-card class="box-card info-card">
           <div class="card-content">
@@ -113,7 +114,8 @@
           >
             <div class="line-name">{{ item.name }}</div>
             <el-tag type="plain" size="small" v-if="item.online_status == 1"
-              >空闲</el-tag
+            >空闲
+            </el-tag
             >
             <el-tag type="danger" size="small" v-else>忙碌</el-tag>
           </div>
@@ -154,7 +156,7 @@
           <el-table-column prop="comment" label="咨询评价" width="150">
           </el-table-column>
         </el-table>
-      </div> 
+      </div>
     </el-container>
   </el-container>
 
@@ -176,12 +178,12 @@
   align-items: center;
 }
 
-.calendar_card{
+.calendar_card {
   padding: 12px;
   /* display: flex; */
   align-items: center;
   width: 450px;
-  height:500px;
+  height: 500px;
 }
 
 
@@ -264,6 +266,7 @@
   display: table;
   content: "";
 }
+
 .clearfix:after {
   clear: both;
 }
@@ -413,57 +416,57 @@ export default {
       scheduleList: [],   //日历
       tableData: [
         {
-          name:"张先生",
-          gender:"男",
-          phone:"13000000000",
-          time:"10:10",
-          date:"2022-04-1",
-          score:"4.4分",
-          comment:"咨询师很好"
-        },{
-          name:"小试",
-          gender:"女",
-          phone:"13000000000",
-          time:"12:09",
-          date:"2022-04-1",
-          score:"4.6分",
-          comment:"咨询师很好"
-        },{
-          name:"周小姐",
-          gender:"女",
-          phone:"13000000000",
-          time:"12:09",
-          date:"2022-04-1",
-          score:"4.6分",
-          comment:"咨询师很好"
-        },{
-          name:"小米",
-          gender:"男",
-          phone:"13000000000",
-          time:"10:10",
-          date:"2022-04-1",
-          score:"4.5分",
-          comment:"咨询师很好"
-        },{
-          name:"小候",
-          gender:"男",
-          phone:"13000000000",
-          time:"10:10",
-          date:"2022-04-1",
-          score:"4.4分",
-          comment:"咨询师很好"
+          name: "张先生",
+          gender: "男",
+          phone: "13000000000",
+          time: "10:10",
+          date: "2022-04-1",
+          score: "4.4分",
+          comment: "咨询师很好"
+        }, {
+          name: "小试",
+          gender: "女",
+          phone: "13000000000",
+          time: "12:09",
+          date: "2022-04-1",
+          score: "4.6分",
+          comment: "咨询师很好"
+        }, {
+          name: "周小姐",
+          gender: "女",
+          phone: "13000000000",
+          time: "12:09",
+          date: "2022-04-1",
+          score: "4.6分",
+          comment: "咨询师很好"
+        }, {
+          name: "小米",
+          gender: "男",
+          phone: "13000000000",
+          time: "10:10",
+          date: "2022-04-1",
+          score: "4.5分",
+          comment: "咨询师很好"
+        }, {
+          name: "小候",
+          gender: "男",
+          phone: "13000000000",
+          time: "10:10",
+          date: "2022-04-1",
+          score: "4.4分",
+          comment: "咨询师很好"
         }
       ]
     }
   },
-  mounted(){
+  mounted() {
     this.getTimeInfo();
     this.getConsultantList(); //咨询师列表
     this.getScheduleList();
   },
   methods: {
 
- // 获取日历
+    // 获取日历
     async getScheduleList() {
       const res = await fetch(
         `http://139.196.111.161:8080/schedule/list?id=1`,
@@ -483,18 +486,18 @@ export default {
 
     // 获取今日时长
     async getTimeInfo() {
-          const res = await fetch(`http://139.196.111.161:8080/consultant/current?id=1`, {
-            credentials: "include",
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-          });
-          const result = await res.json();
-          this.today_session_count = result.today_session_count;
-          this.current_session_count = result.current_session_count;
-          this.total_session_count = result.total_session_count;
+      const res = await fetch(`http://139.196.111.161:8080/consultant/current?id=1`, {
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
         },
-  //查看咨询师列表
+      });
+      const result = await res.json();
+      this.today_session_count = result.today_session_count;
+      this.current_session_count = result.current_session_count;
+      this.total_session_count = result.total_session_count;
+    },
+    //查看咨询师列表
     async getConsultantList() {
       const res = await fetch(
         `http://139.196.111.161:8080/consultant/list?id=1&identity=2`,

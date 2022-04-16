@@ -9,7 +9,7 @@
         background-color="#0d193c"
         text-color="#fff"
         active-text-color="#ffd04b">
-        
+
         <div style="margin-left:20px;margin-top:20px;font-color:white">
       <el-avatar style="vertical-align: -20%" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png">
       </el-avatar>
@@ -21,12 +21,12 @@
           <span slot="title" v-on:click="onMain('loginForm')">首页</span>
         </el-menu-item>
         <el-menu-item index="2">
-          <i class="el-icon-menu"></i>
+          <i class="el-icon-time"></i>
           <span slot="title" v-on:click="onHistory('loginForm')">咨询记录</span>
         </el-menu-item>
         <el-menu-item index="3">
-          <i class="el-icon-menu"></i>
-          <span slot="title" v-on:click="onSession('loginForm')">会话记录</span>
+          <i class="el-icon-chat-dot-round"></i>
+          <span slot="title" v-on:click="onSession('loginForm')">会话列表</span>
         </el-menu-item>
       </el-menu>
     </el-aside>
@@ -61,7 +61,7 @@
       label="姓名"
       width="120">
     </el-table-column>
-    
+
     <el-table-column
       prop="create_time"
       label="咨询日期"
@@ -102,7 +102,7 @@
     </el-table-column>
   </el-table>
       </el-main>
-      
+
     </el-container>
   </el-container>
 
@@ -126,9 +126,10 @@ export default {
   },
   methods: {
     async getSessionList() {
-      
-      const res = await fetch(`http://139.196.111.161:8080/session/list?`);
+      this.tableData = []
+      const res = await fetch(`http://139.196.111.161:8080/session/list?id=3`);
       const result = await res.json();
+      console.log("res",res);
       debugger;
       let list = result["session_list"];
       this.tableData.push(...list);
