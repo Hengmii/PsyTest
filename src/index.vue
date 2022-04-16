@@ -37,17 +37,18 @@
 <script>
 import { Notification } from 'element-ui'
 import { mapState } from 'vuex'
-import CurrentConversation from '../../../src/components/conversation/current-conversation'
-import SideBar from '../../../src/components/layout/side-bar'
-import Login from '../../../src/components/user/login'
-import ImagePreviewer from '../../../src/components/message/image-previewer.vue'
-import QrCodeList from '../../../src/components/qr-code-list'
-import { translateGroupSystemNotice } from '../../../src/utils/common'
-import GroupLive from '../../../src/components/group-live/index'
-import Calling from '../../../src/components/message/trtc-calling/calling-index'
-import { ACTION } from '../../../src/utils/trtcCustomMessageMap'
+import CurrentConversation from './components/conversation/current-conversation'
+import SideBar from './components/layout/side-bar'
+import Login from './components/user/login'
+import ImagePreviewer from './components/message/image-previewer.vue'
+import QrCodeList from './components/qr-code-list'
+import { translateGroupSystemNotice } from './utils/common'
+import GroupLive from './components/group-live'
+import Calling from './components/message/trtc-calling/calling-index'
+import { ACTION } from './utils/trtcCustomMessageMap'
 
 export default {
+  name: "Index",
   title: 'TIMSDK DEMO',
   data () {
     return {
@@ -246,7 +247,7 @@ export default {
       try{
         JSON.parse(str)
         return true
-      }catch {
+      }catch (e){
         return false
       }
     },

@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { MessageBox, Row, Col, Button, Input, Loading, Dialog, Dropdown, DropdownMenu, DropdownItem, Checkbox, CheckboxGroup, Divider, Popover, Collapse, CollapseItem, Form, FormItem, Select, Option, Menu, MenuItem, MenuItemGroup, Submenu, Tooltip} from 'element-ui'
 import Avatar from '../../../src/components/avatar.vue'
-import Index from './index.vue'
+import Index from '../../../src'
 import store from '../../../src/store'
 import tim from 'src/tim'
 import TIM from 'tim-js-sdk/tim-js-friendship.js'

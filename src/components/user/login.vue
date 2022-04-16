@@ -111,6 +111,7 @@ export default {
         })
         .then(() => {
           console.log("通了..")
+
           this.loading = false
           this.$store.commit('toggleIsLogin', true)
           this.$store.commit('startComputeCurrent')
