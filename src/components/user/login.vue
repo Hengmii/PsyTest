@@ -110,7 +110,7 @@ export default {
          userSig: returnInfo.user_sig
         })
         .then(() => {
-          console.log("通了。")
+          console.log("通了..")
           this.loading = false
           this.$store.commit('toggleIsLogin', true)
           this.$store.commit('startComputeCurrent')
