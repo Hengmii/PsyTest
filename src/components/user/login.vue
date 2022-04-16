@@ -57,23 +57,24 @@ export default {
     ElOption: Option,
   },
   data() {
-    const checkUserID = (rule, value, callback) => {
-      if (!/^[a-zA-Z][a-zA-Z0-9_]{3,23}$/.test(value)) {
-        callback(new Error('不合法（字母开头+字母/数字，长度4-24)'))
-      } else {
-        callback()
-      }
-    }
+    // const checkUserID = (rule, value, callback) => {
+    //   if (!/^[a-zA-Z][a-zA-Z0-9_]{3,23}$/.test(value)) {
+    //     callback(new Error('不合法（字母开头+字母/数字，长度4-24)'))
+    //   } else {
+    //     callback()
+    //   }
+    // }
 
     return {
       form: {
-        userID: '咨询师',
-        password: ''
+        userID: 'M-002',
+        password: '123456'
       },
       rules: {
         userID: [
           { required: true, message: '请输入 userID', trigger: 'blur' },
-          { validator: checkUserID, trigger: 'blur' }
+          // { validator: checkUserID, trigger: 'blur' }
+          {trigger: 'blur' }
         ],
         password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
       },
@@ -84,20 +85,32 @@ export default {
   },
   methods: {
     submit() {
-      this.$refs['login'].validate(valid => {
+      this.$refs['login'].validate(async (valid)=>{
         if (valid) {
-          this.login()
-        }
-      })
-    },
-    login() {
-      this.loading = true
-      this.tim
+          // this.login()
+                this.loading = true
+            let s = 'http://139.196.111.161:8080/user/login?username='+this.form.userID+'&password='+this.form.password+'&identity=0';
+            const res = await fetch (s,{
+
+              method: 'GET',
+              headers: {
+                "Content-Type": "application/json;charset-utf-8;"
+              }
+
+            })
+      const returnInfo = await res.json();
+
+      console.log("跑通了吗?")
+      console.log(this.form.userID)
+      console.log(this.form.password)
+      console.log(returnInfo.user_sig)
+      tim
         .login({
-          userID: this.form.userID,
-          userSig: window.genTestUserSig(this.form.userID).userSig
+         userID: this.form.userID,
+         userSig: returnInfo.user_sig
         })
         .then(() => {
+          console.log("通了..")
           this.loading = false
           this.$store.commit('toggleIsLogin', true)
           this.$store.commit('startComputeCurrent')
@@ -105,8 +118,8 @@ export default {
           this.$store.commit({
             type: 'GET_USER_INFO',
             userID: this.form.userID,
-            userSig: window.genTestUserSig(this.form.userID).userSig,
-            sdkAppID: window.genTestUserSig('').SDKAppID
+            userSig: returnInfo.user_sig,
+            sdkAppID: 1400658383
           })
           this.$store.commit('showMessage', {
             type: 'success',
@@ -120,7 +133,42 @@ export default {
             type: 'error'
           })
         })
+        }
+      })
     },
+    // login() {
+    //   this.loading = true
+    //   console.log("有userid吗?")
+    //   this.tim
+    //     .login({
+    //       userID: this.form.userID,
+    //       userSig: window.genTestUserSig(this.form.userID).userSig
+    //     })
+    //     .then(() => {
+    //       console.log("有")
+    //       this.loading = false
+    //       this.$store.commit('toggleIsLogin', true)
+    //       this.$store.commit('startComputeCurrent')
+    //       this.$store.commit('showMessage', { type: 'success', message: '登录成功' })
+    //       this.$store.commit({
+    //         type: 'GET_USER_INFO',
+    //         userID: this.form.userID,
+    //         userSig: window.genTestUserSig(this.form.userID).userSig,
+    //         sdkAppID: window.genTestUserSig('').SDKAppID
+    //       })
+    //       this.$store.commit('showMessage', {
+    //         type: 'success',
+    //         message: '登录成功'
+    //       })
+    //     })
+    //     .catch(error => {
+    //       this.loading = false
+    //       this.$store.commit('showMessage', {
+    //         message: '登录失败：' + error.message,
+    //         type: 'error'
+    //       })
+    //     })
+    // }
   }
 }
 </script>
