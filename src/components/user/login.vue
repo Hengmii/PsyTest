@@ -12,14 +12,15 @@
     >
       <!-- Github登录方式 -->
       <el-form-item prop="userID">
-        <el-select v-model="form.userID" class="user-selector">
+        <el-input v-model="form.userID" placeholder="用户名"></el-input>
+        <!-- <el-select v-model="form.userID" class="user-selector">
           <el-option
             v-for="index in 30"
             :key="index"
             :label="`user${index-1}`"
             :value="`user${index-1}`"
           ></el-option>
-        </el-select>
+        </el-select> -->
       </el-form-item>
       <!-- 线上版本登录方式 -->
       <!-- <el-form-item prop="userID">
@@ -67,12 +68,12 @@ export default {
 
     return {
       form: {
-        userID: 'M-002',
+        userID: '',
         password: '123456'
       },
       rules: {
         userID: [
-          { required: true, message: '请输入 userID', trigger: 'blur' },
+          // { required: true, message: '请输入 userID', trigger: 'blur' },
           // { validator: checkUserID, trigger: 'blur' }
           {trigger: 'blur' }
         ],
