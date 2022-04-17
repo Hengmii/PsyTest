@@ -17,13 +17,57 @@ import axios from 'axios'
 import TIM from 'tim-js-sdk';
 import TIMUploadPlugin from 'tim-upload-plugin';
 
+import { MessageBox, Row, Col, Button, Input, Loading, Dialog, Dropdown, DropdownMenu, DropdownItem, Checkbox, CheckboxGroup, Divider, Popover, Collapse, CollapseItem, Form, FormItem, Select, Option, Menu, MenuItem, MenuItemGroup, Submenu, Tooltip} from 'element-ui'
+import Avatar from './components/avatar.vue'
+import Index from './index.vue'
+import TWebLive from 'tweblive'
+import VueClipboard from 'vue-clipboard2'
+import './assets/icon/iconfont.css'
+import './assets/icon/tim.css'
+import './assets/css/animate.css'
+import trtcCalling from './trtc-calling'
+import TRTCCalling from 'trtc-calling-js'
 
-
-window.TIM = TIM
 window.tim = tim
+window.TIM = TIM
+window.TRTCCalling = TRTCCalling
+window.trtcCalling = trtcCalling
+window.store = store
+Vue.prototype.$bus = new Vue() // event Bus 用于无关系组件间的通信。
+Vue.prototype.tim = tim
+Vue.prototype.TIM = TIM
+Vue.prototype.TWebLive = TWebLive
+Vue.prototype.$store = store
+Vue.prototype.$confirm = MessageBox.confirm
+Vue.prototype.trtcCalling = trtcCalling
+Vue.prototype.TRTCCalling = TRTCCalling
+Vue.use(Button)
+Vue.use(Row)
+Vue.use(Col)
+Vue.use(Input)
+Vue.use(Loading)
+Vue.use(Dialog)
+Vue.use(Dropdown)
+Vue.use(DropdownMenu)
+Vue.use(DropdownItem)
+Vue.use(VueClipboard)
+Vue.use(Checkbox)
+Vue.use(CheckboxGroup)
+Vue.use(Divider)
+Vue.use(Popover)
+Vue.use(Collapse)
+Vue.use(CollapseItem)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Select)
+Vue.use(Option)
+Vue.use(Menu)
+Vue.use(MenuItem)
+Vue.use(MenuItemGroup)
+Vue.use(Submenu)
+Vue.use(Tooltip)
+Vue.component('avatar', Avatar)
 
-Vue.TIM = TIM
-Vue.tim = tim
 
 // 监听事件
 
@@ -103,17 +147,17 @@ tim.on(TIM.EVENT.KICKED_OUT, function(event) {
   // event.data.type - 被踢下线的原因，例如:
   //    - TIM.TYPES.KICKED_OUT_MULT_ACCOUNT 多实例登录被踢
   //    - TIM.TYPES.KICKED_OUT_MULT_DEVICE 多终端登录被踢
-  //    - TIM.TYPES.KICKED_OUT_USERSIG_EXPIRED 签名过期被踢 （v2.4.0起支持）。 
+  //    - TIM.TYPES.KICKED_OUT_USERSIG_EXPIRED 签名过期被踢 （v2.4.0起支持）。
 });
 
- tim.on(TIM.EVENT.NET_STATE_CHANGE, function(event) { 
+ tim.on(TIM.EVENT.NET_STATE_CHANGE, function(event) {
   console.log(event)
-  //  网络状态发生改变（v2.5.0 起支持）。 
-  // event.name - TIM.EVENT.NET_STATE_CHANGE 
-  // event.data.state 当前网络状态，枚举值及说明如下： 
-  //     \- TIM.TYPES.NET_STATE_CONNECTED - 已接入网络 
-  //     \- TIM.TYPES.NET_STATE_CONNECTING - 连接中。很可能遇到网络抖动，SDK 在重试。接入侧可根据此状态提示“当前网络不稳定”或“连接中” 
-  //    \- TIM.TYPES.NET_STATE_DISCONNECTED - 未接入网络。接入侧可根据此状态提示“当前网络不可用”。SDK 仍会继续重试，若用户网络恢复，SDK 会自动同步消息  
+  //  网络状态发生改变（v2.5.0 起支持）。
+  // event.name - TIM.EVENT.NET_STATE_CHANGE
+  // event.data.state 当前网络状态，枚举值及说明如下：
+  //     \- TIM.TYPES.NET_STATE_CONNECTED - 已接入网络
+  //     \- TIM.TYPES.NET_STATE_CONNECTING - 连接中。很可能遇到网络抖动，SDK 在重试。接入侧可根据此状态提示“当前网络不稳定”或“连接中”
+  //    \- TIM.TYPES.NET_STATE_DISCONNECTED - 未接入网络。接入侧可根据此状态提示“当前网络不可用”。SDK 仍会继续重试，若用户网络恢复，SDK 会自动同步消息
 });
 
 
