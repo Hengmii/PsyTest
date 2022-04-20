@@ -10,9 +10,11 @@
         background-color="#0d193c"
         text-color="#fff"
         active-text-color="#ffd04b">
-        <el-menu-item index="0">
-          <span slot="title">欢迎，机构管理员</span>
-        </el-menu-item>
+        <div style="margin-left:20px;margin-top:20px;font-color:white">
+      <el-avatar style="vertical-align: -20%" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png">
+      </el-avatar>
+      <span style="color:white">欢迎，管理员</span>
+    </div>
         <el-menu-item index="1">
           <i class="el-icon-menu"></i>
           <span slot="title" v-on:click="onMain('loginForm')">首页</span>

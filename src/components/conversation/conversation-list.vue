@@ -4,8 +4,8 @@
       <button title="刷新列表" @click="handleRefresh">
         <i class="tim-icon-refresh"></i>
       </button>
-      <button title="创建会话" @click="handleAddButtonClick">
-        <i class="tim-icon-add"></i>
+      <button title="求助督导" @click="handleAddButtonClick">
+        <i class="el-icon-message-solid"></i>
       </button>
     </div>
     <div class="scroll-container">
@@ -15,7 +15,7 @@
         :key="item.conversationID"
       />
     </div>
-    <el-dialog title="快速发起会话" :visible.sync="showDialog" width="30%">
+    <el-dialog title="求助督导" :visible.sync="showDialog" width="30%">
       <el-input placeholder="请输入用户ID" v-model="userID" @keydown.enter.native="handleConfirm"/>
       <span slot="footer" class="dialog-footer">
         <el-button @click="showDialog = false">取 消</el-button>
@@ -34,7 +34,7 @@ export default {
   data() {
     return {
       showDialog: false,
-      userID: '',
+      userID: 'M-002',
       isCheckouting: false, // 是否正在切换会话
       timeout: null
     }

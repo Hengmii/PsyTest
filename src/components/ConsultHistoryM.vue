@@ -13,7 +13,7 @@
         <div style="margin-left:20px;margin-top:20px;font-color:white">
       <el-avatar style="vertical-align: -20%" src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png">
       </el-avatar>
-      <span>欢迎，督导</span>
+      <span style="color:white">欢迎，王督导</span>
     </div>
 
         <el-menu-item index="1">
@@ -40,51 +40,31 @@
       <el-main>
          <div class="block">
       <!--          <span class="demonstration">默认</span>-->
-      <el-input
+      <!-- <el-input
         style="width: 220px"
         placeholder="输入姓名进行搜索"
         prefix-icon="el-icon-search"
         v-model="input2">
-      </el-input>
-      <el-date-picker
-        v-model="value1"
-        type="date"
-        placeholder="选择日期">
-      </el-date-picker>
+      </el-input> -->
     </div>
   <el-table
     :data="tableData"
     style="width: 100%"
     >
-    <el-table-column
-      prop="name"
-      label="姓名"
-      width="120">
-    </el-table-column>
+          <el-table-column prop="name" label="姓名" width="150">
+          </el-table-column>
 
-    <el-table-column
-      prop="create_time"
-      label="咨询日期"
-      width="150">
-    </el-table-column>
+          <el-table-column prop="create_time" label="开始咨询时间" width="240">
+          </el-table-column>
 
-    <el-table-column
-      prop="name"
-      label="咨询评级"
-      width="120">
-    </el-table-column>
+          <el-table-column prop="finish_time" label="结束咨询时间" width="240">
+          </el-table-column>
 
-    <el-table-column
-      prop="name"
-      label="咨询评价"
-      width="120">
-    </el-table-column>
+          <el-table-column prop="consultant_comment" label="咨询师评价" width="300">
+          </el-table-column>
 
-    <el-table-column
-      prop="name"
-      label="咨询求助"
-      width="120">
-    </el-table-column>
+          <el-table-column prop="visitor_comment" label="访客评价" width="260">
+          </el-table-column>
 
     <el-table-column
       fixed="right"
@@ -96,7 +76,7 @@
           @click.native.prevent="deleteRow(scope.$index, tableData)"
           type="text"
           size="small">
-          移除
+          导出记录
         </el-button>
       </template>
     </el-table-column>
@@ -125,15 +105,53 @@ export default {
     this.getSessionList();
   },
   methods: {
+    //获取咨询列表
+    add0(m) {
+      return m < 10 ? "0" + m : m;
+    },
+    format(timeNum) {
+      //shijianchuo是整数，否则要parseInt转换
+      var time = new Date(timeNum);
+      var y = time.getFullYear();
+      var m = time.getMonth() + 1;
+      var d = time.getDate();
+      var h = time.getHours();
+      var mm = time.getMinutes();
+      var s = time.getSeconds();
+      return (
+        y +
+        "-" +
+        this.add0(m) +
+        "-" +
+        this.add0(d) +
+        " " +
+        this.add0(h) +
+        ":" +
+        this.add0(mm) +
+        ":" +
+        this.add0(s)
+      );
+    },
+
     async getSessionList() {
-      this.tableData = []
-      const res = await fetch(`http://139.196.111.161:8080/session/list?id=3`);
+      this.tableData = [];
+      const res = await fetch(`http://139.196.111.161:8080/session/list?id=4`);
       const result = await res.json();
-      console.log("res",res);
-      debugger;
+      console.log("result", result);
       let list = result["session_list"];
-      this.tableData.push(...list);
-      this.orgList.push(...list);
+      const newData = [];
+      if (list && list.length) {
+        list.forEach((val) => {
+          val.order.create_time = this.format(val.order.create_time);
+          val.order.finish_time = this.format(val.order.finish_time);
+          newData.push({
+            ...val.order,
+            name: val.name,
+          });
+        });
+      }
+      this.tableData.push(...newData);
+      this.orgList.push(...newData);
     },
     onMain(formName) {
       this.$router.push('/MainMonitor');

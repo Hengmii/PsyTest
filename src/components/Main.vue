@@ -16,7 +16,7 @@
             src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
           >
           </el-avatar>
-          <span>欢迎，机构管理员</span>
+          <span style="color:white">欢迎，管理员</span>
         </div>
 
         <el-menu-item index="1">
@@ -440,7 +440,7 @@ export default {
 
     // 获取今日时长
     async getTimeInfo() {
-      const res = await fetch(`http://139.196.111.161:8080/stat/current?id=1`, {
+      const res = await fetch(`http://139.196.111.161:8080/stat/current?id=5`, {
         credentials: "include",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -465,7 +465,7 @@ export default {
     // 查看咨询师列表
     async getConsultantList() {
       const res = await fetch(
-        `http://139.196.111.161:8080/consultant/list?id=1&identity=2`,
+        `http://139.196.111.161:8080/consultant/list?id=5&identity=2`,
         {
           credentials: "include",
           headers: {
@@ -480,7 +480,7 @@ export default {
     // 查看督导列表
     async getSuperviseList() {
       const res = await fetch(
-        `http://139.196.111.161:8080/consultant/list?id=1&identity=3`,
+        `http://139.196.111.161:8080/consultant/list?id=5&identity=3`,
         {
           credentials: "include",
           headers: {
@@ -495,7 +495,7 @@ export default {
     // 获取当月好评数量
     async getStatNum() {
       const res = await fetch(
-        `http://139.196.111.161:8080/stat/ranking?id=1&type=2`,
+        `http://139.196.111.161:8080/stat/ranking?id=5&type=2`,
         {
           credentials: "include",
           headers: {
@@ -510,7 +510,7 @@ export default {
     // 获取当月咨询排行数量
     async getConsultingNum() {
       const res = await fetch(
-        `http://139.196.111.161:8080/stat/ranking?id=1&type=1`,
+        `http://139.196.111.161:8080/stat/ranking?id=5&type=1`,
         {
           credentials: "include",
           headers: {
@@ -533,7 +533,7 @@ export default {
 
     // 绘制图表
     async makeNumChange() {
-      const res = await fetch(`http://139.196.111.161:8080/stat/chart?id=1`);
+      const res = await fetch(`http://139.196.111.161:8080/stat/chart?id=5`);
       const result = await res.json();
       const xData = [];
       const yData = [];
@@ -610,7 +610,7 @@ export default {
     // 制作数量统计（7日咨询数据量统计）
     async makeNumStatistics() {
       const res = await fetch(
-        `http://139.196.111.161:8080/stat/period?id=1&from_day=0&to_day=0`
+        `http://139.196.111.161:8080/stat/period?id=5&from_day=0&to_day=0`
       );
       const result = await res.json();
       const yData = [];

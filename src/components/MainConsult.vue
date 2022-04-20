@@ -9,12 +9,12 @@
         background-color="#0d193c"
         text-color="#fff"
         active-text-color="#ffd04b">
-        <div style="margin-left: 20px; margin-top: 20px">
+        <div style="margin-left: 20px; margin-top: 20px;">
           <el-avatar
             style="vertical-align: -20%"
             src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png">
           </el-avatar>
-          <span>欢迎，咨询师</span>
+          <span style="color:white">欢迎，李咨询师</span>
         </div>
 
         <el-menu-item index="1">
@@ -136,20 +136,17 @@
       <div class="center-box">
         <!-- 卡片3 -->
 
-        <el-table style="margin-left: 50%; margin-top: -1100px" :data="tableData">
-          <el-table-column prop="name" label="咨询人" width="80">
+        <el-table style="margin-left: 54%; margin-top: -1000px" :data="tableData">
+          <el-table-column prop="name" label="姓名" width="80">
           </el-table-column>
-          <el-table-column prop="gender" label="性别" width="80">
+
+          <el-table-column prop="create_time" label="开始咨询时间" width="150">
           </el-table-column>
-          <el-table-column prop="phone" label="电话" width="120">
+
+          <el-table-column prop="finish_time" label="结束咨询时间" width="150">
           </el-table-column>
-          <el-table-column prop="time" label="咨询时长" width="120">
-          </el-table-column>
-          <el-table-column prop="date" label="咨询日期" width="120">
-          </el-table-column>
-          <el-table-column prop="score" label="咨询评级" width="100">
-          </el-table-column>
-          <el-table-column prop="comment" label="咨询评价" width="150">
+
+          <el-table-column prop="consultant_comment" label="咨询评价" width="200">
           </el-table-column>
         </el-table>
       </div>
@@ -356,64 +353,71 @@ export default {
       total_session_time: "00:00:00", //今日咨询时长
       total_session_count: 0, //累计完成会话数
       scheduleList: [], // 日历信息
-      tableData: [
-        {
-          name: "张先生",
-          gender: "男",
-          phone: "13000000000",
-          time: "10:10",
-          date: "2022-04-1",
-          score: "4.4分",
-          comment: "咨询师很好"
-        }, {
-          name: "小试",
-          gender: "女",
-          phone: "13000000000",
-          time: "12:09",
-          date: "2022-04-1",
-          score: "4.6分",
-          comment: "咨询师很好"
-        }, {
-          name: "周小姐",
-          gender: "女",
-          phone: "13000000000",
-          time: "12:09",
-          date: "2022-04-1",
-          score: "4.6分",
-          comment: "咨询师很好"
-        }, {
-          name: "小米",
-          gender: "男",
-          phone: "13000000000",
-          time: "10:10",
-          date: "2022-04-1",
-          score: "4.5分",
-          comment: "咨询师很好"
-        }, {
-          name: "小候",
-          gender: "男",
-          phone: "13000000000",
-          time: "10:10",
-          date: "2022-04-1",
-          score: "4.4分",
-          comment: "咨询师很好"
-        }
-      ]
+      tableData: []
     };
   },
   mounted() {
     this.getTimeInfo();
     this.getScheduleList(); // 获取日历信息
+    this.getSessionList(); //获取咨询列表
   },
   methods: {
     handleOpen() {
     },
     handleClose() {
     },
+    //咨询记录
+    add0(m) {
+      return m < 10 ? "0" + m : m;
+    },
+    format(timeNum) {
+      //shijianchuo是整数，否则要parseInt转换
+      var time = new Date(timeNum);
+      var y = time.getFullYear();
+      var m = time.getMonth() + 1;
+      var d = time.getDate();
+      var h = time.getHours();
+      var mm = time.getMinutes();
+      var s = time.getSeconds();
+      return (
+        y +
+        "-" +
+        this.add0(m) +
+        "-" +
+        this.add0(d) +
+        " " +
+        this.add0(h) +
+        ":" +
+        this.add0(mm) +
+        ":" +
+        this.add0(s)
+      );
+    },
+
+    async getSessionList() {
+      this.tableData = [];
+      const res = await fetch(`http://139.196.111.161:8080/session/list?id=2`);
+      const result = await res.json();
+      console.log("result", result);
+      let list = result["session_list"];
+      const newData = [];
+      if (list && list.length) {
+        list.forEach((val) => {
+          val.order.create_time = this.format(val.order.create_time);
+          val.order.finish_time = this.format(val.order.finish_time);
+          newData.push({
+            ...val.order,
+            name: val.name,
+          });
+        });
+      }
+      this.tableData.push(...newData);
+      this.orgList.push(...newData);
+    },
     // 获取今日时长
     async getTimeInfo() {
       const res = await fetch(
-        `http://139.196.111.161:8080/consultant/current?id=1`,
+        `http://139.196.111.161:8080/consultant/current?id=2`,
         {
           credentials: "include",
           headers: {
@@ -442,7 +446,7 @@ export default {
     // 获取日历
     async getScheduleList() {
       const res = await fetch(
-        `http://139.196.111.161:8080/schedule/list?id=1`,
+        `http://139.196.111.161:8080/schedule/list?id=2`,
         {
           credentials: "include",
           headers: {
