@@ -128,7 +128,7 @@ export default {
 <style lang="stylus" scoped>
 .list-container
   height 100%
-  width 100%
+  width 500px
   display flex
   flex-direction column
   .group-container 

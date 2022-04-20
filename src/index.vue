@@ -79,9 +79,16 @@ export default {
       sdkAppID: state => state.user.sdkAppID
     }),
     // 是否显示 Loading 状态
+
     // showLoading() {
     //   return !this.isSDKReady
     // }
+
+    showLoading() {
+      // return !this.isSDKReady
+      return false
+    }
+
   },
   mounted() {
     // 初始化监听器
