@@ -75,33 +75,33 @@ import MainVue from './Main.vue';
                 this.$router.push('/Main');
               }
               if(returnInfo.identity == 3){
-                let promise = tim.login({userID: this.user.id, userSig: returnInfo.user_sig});
-                promise.then(function(imResponse) {
-                  console.log(imResponse.data); // 登录成功
-                  console.log(1111111111111111);
-                  if (imResponse.data.repeatLogin === true) {
-                    // 标识帐号已登录，本次登录操作为重复登录。v2.5.1 起支持
-                    console.log(imResponse.data.errorInfo);
-                  }
-                }).catch(function(imError) {
-                  console.warn('login error:', imError); // 登录失败的相关信息
-                });
+                // let promise = tim.login({userID: this.user.id, userSig: returnInfo.user_sig});
+                // promise.then(function(imResponse) {
+                //   console.log(imResponse.data); // 登录成功
+                //   console.log(1111111111111111);
+                //   if (imResponse.data.repeatLogin === true) {
+                //     // 标识帐号已登录，本次登录操作为重复登录。v2.5.1 起支持
+                //     console.log(imResponse.data.errorInfo);
+                //   }
+                // }).catch(function(imError) {
+                //   console.warn('login error:', imError); // 登录失败的相关信息
+                // });
 
                 this.$router.push('/MainMonitor');
               }
               if(returnInfo.identity == 2){
                 //IM登录
-                let promise = tim.login({userID: this.user.id, userSig: returnInfo.user_sig});
-                promise.then(function(imResponse) {
-                  console.log(imResponse.data); // 登录成功
-                  console.log(1111111111111111);
-                  if (imResponse.data.repeatLogin === true) {
-                    // 标识帐号已登录，本次登录操作为重复登录。v2.5.1 起支持
-                    console.log(imResponse.data.errorInfo);
-                  }
-                }).catch(function(imError) {
-                  console.warn('login error:', imError); // 登录失败的相关信息
-                });
+                // let promise = tim.login({userID: this.user.id, userSig: returnInfo.user_sig});
+                // promise.then(function(imResponse) {
+                //   console.log(imResponse.data); // 登录成功
+                //   console.log(1111111111111111);
+                //   if (imResponse.data.repeatLogin === true) {
+                //     // 标识帐号已登录，本次登录操作为重复登录。v2.5.1 起支持
+                //     console.log(imResponse.data.errorInfo);
+                //   }
+                // }).catch(function(imError) {
+                //   console.warn('login error:', imError); // 登录失败的相关信息
+                // });
 
                 this.$router.push('/MainConsult');
               }

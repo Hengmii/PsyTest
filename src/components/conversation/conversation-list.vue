@@ -146,7 +146,7 @@ export default {
 <style lang="stylus" scoped>
 .list-container
   height 100%
-  width 500px
+  width 100%
   display flex
   flex-direction column // -reverse
   .header-bar
