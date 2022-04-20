@@ -80,7 +80,7 @@ export default new Router({
     },{
       path: '/SessionC',
       name: 'SessionC',
-      component: SessionC
+      component: Index
     },{
       path: '/SessionM',
       name: 'SessionM',

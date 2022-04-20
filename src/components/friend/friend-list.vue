@@ -1,8 +1,8 @@
 <template>
   <div class="friend-container">
     <div class="add-friend" @click="handleAddButtonClick">
-      <i class="tim-icon-friend-add" style="font-size: 28px"></i>
-      <span style="margin-left: 6px">加好友</span>
+      <i class="tim-icon-friend-add" style="font-size: 28px;margin-left:-400px"></i>
+      <span style="margin-left: 0px">加好友</span>
     </div>
     <el-dialog title="快速搜索好友" :visible.sync="showDialog" width="400px">
       <el-input placeholder="请输入用户ID" v-model="userID" @keydown.enter.native="addFriendConfirm">
@@ -354,7 +354,7 @@ export default {
 <style lang="stylus" scpoed>
 .friend-container {
     height 100%
-    width 100%
+    width 500px
     display flex
     flex-direction column // -reverse
   .add-friend {

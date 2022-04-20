@@ -80,7 +80,8 @@ export default {
     }),
     // 是否显示 Loading 状态
     showLoading() {
-      return !this.isSDKReady
+      // return !this.isSDKReady
+      return false
     }
   },
   mounted() {
