@@ -14,30 +14,6 @@
       <i class="iconfont icon-wenjian" title="发文件" @click="handleSendFileClick"></i>
       <i class="iconfont icon-zidingyi" title="发自定义消息" @click="sendCustomDialogVisible = true"></i>
       <i class="iconfont icon-diaocha" title="小调查" @click="surveyDialogVisible = true"></i>
-
-      <!-- ================================================================================
-      =====================================================================================-->
-      <i class="el-icon-finished" title="结束会话" @click="dialogFormVisible = true"></i>
-      <el-dialog :visible.sync="dialogFormVisible">
-        <template slot="title">
-          <div>本次咨询已结束，请评价</div>
-        </template>
-        <el-tab-pane label="请为本次咨询进行评价">
-          <el-form :v-model="ruleForm" :rules="rules" ref="ruleForm" class="demo-ruleForm">
-            <el-form-item label="咨询评价" prop="comment" required></el-form-item>
-              <el-col>
-                <el-input placeholder="请填写评价"></el-input>
-              </el-col>
-          </el-form>
-        </el-tab-pane>
-        <span slot="footer" class="dialog-footer">
-          <el-button type="primary" @click.native.prevent="submitComment">提交</el-button>
-          <el-button @click="dialogFormVisible = false">取消</el-button>
-        </span>
-      </el-dialog>
-      <!-- ================================================================================
-      =====================================================================================-->
-
       <el-dropdown>
       <span class="el-dropdown-link">
       <i class="el-icon-phone-outline" v-if="toAccount !== userID" title="语音通话"></i>
@@ -69,7 +45,7 @@
         <el-button type="primary" @click="sendCustomMessage">确 定</el-button>
       </span>
     </el-dialog>
-    <el-dialog title="对IM Web demo的建议和使用感受" :visible.sync="surveyDialogVisible" width="30%">
+    <el-dialog title="对用户进行评价" :visible.sync="surveyDialogVisible" width="30%">
       <el-form label-width="100px">
         <el-form-item label="评分">
           <div class="block">
@@ -167,11 +143,6 @@ export default {
   },
   data() {
     return {
-      // ==========================================================================================================
-      // ==========================================================================================================
-      dialogFormVisible: false,
-      // ============================================================
-      // ============================================================
       callingList: [],
       groupAtList: [],
       listTpye:'',
@@ -662,37 +633,7 @@ export default {
             type: 'error'
           })
         })
-    },
-    // ===================================================================================================
-    // ==========================================================
-    submitComment(){
-      // this.$refs.ruleForm.validate( async (valid) =>{
-      //   if(valid){
-      //     const res = await fetch(`http://139.196.111.161:8080/session/feedback?id=1`,{
-      //       method: "POST",
-      //       headers: {
-      //         'Content-Type' : 'application/json;charset=utf-8;'
-      //       },
-      //       body:JSON.stringify( {
-      //         feedback_text : this.comment
-      //       })
-      //     });
-      //     const result = await res.json();
-      //     if(result.status.code == 0){
-      //       alert("评价成功");
-      //     }
-      //     else{
-      //       alert("评价失败");
-      //     }
-      //   }
-      //   else{
-      //     this.dialogFormVisible = true;
-      //     return false;
-      //   }
-      // })
     }
-    // ==========================================================================
-    // ================================================================
   }
 }
 </script>

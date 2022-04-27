@@ -2,7 +2,7 @@
 <message-bubble :isMine=isMine :message=message>
   <div class="custom-element-wrapper">
     <div class="survey"  v-if="this.payload.data === 'survey'">
-      <div class="title">对IM DEMO的评分和建议</div>
+      <div class="title">对用户的评分和建议</div>
       <el-rate
           v-model="rate"
           disabled

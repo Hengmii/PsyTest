@@ -47,7 +47,7 @@
             <div class="message-container" v-else-if="message.type === 'TIMCustomElem'">
                 <div class="custom-element-wrapper">
                     <div class="survey"  v-if="this.payload.data === 'survey'">
-                        <div class="title">对IM DEMO的评分和建议</div>
+                        <div class="title">对用户评分和建议</div>
                         <el-rate
                                 v-model="rate"
                                 disabled
