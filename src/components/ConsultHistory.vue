@@ -69,7 +69,9 @@
           <el-table-column prop="consultant_comment" label="咨询师评价" width="300">
           </el-table-column>
 
-          <el-table-column prop="visitor_comment" label="访客评价" width="260">
+        <el-table-column prop="visitor_mark" label="咨询评级" width="100">
+          </el-table-column>
+          <el-table-column prop="visitor_comment" label="访客评价" width="200">
           </el-table-column>
 
     <el-table-column

@@ -50,6 +50,10 @@ import MainVue from './Main.vue';
         dialogVisible: false
       }
     },
+    mounted(){
+
+    }
+    ,
     methods: {
       onSubmit(){
         this.$refs.loginForm.validate( async (valid)=>{

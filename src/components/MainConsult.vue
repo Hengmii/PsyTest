@@ -136,7 +136,7 @@
       <div class="center-box">
         <!-- 卡片3 -->
 
-        <el-table style="margin-left: 54%; margin-top: -1000px" :data="tableData">
+        <el-table style="margin-left: 54%; margin-top: -800px" :data="tableData">
           <el-table-column prop="name" label="姓名" width="80">
           </el-table-column>
 

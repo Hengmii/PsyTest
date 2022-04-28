@@ -89,7 +89,7 @@
                 type="text"
                 size="small"
               >
-                移除
+                导出记录
               </el-button>
             </template>
           </el-table-column>

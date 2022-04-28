@@ -84,13 +84,13 @@
           </el-table-column>
           <el-table-column prop="title" label="身份" width="140">
           </el-table-column>
-          <el-table-column prop="bind_username" label="绑定咨询师" width="140">
+          <el-table-column prop="email" label="邮箱" width="200">
           </el-table-column>
           <el-table-column prop="total_session_count" label="总督导次数" width="140">
           </el-table-column>
           <el-table-column prop="total_work_time" label="督导总时长" width="140">
           </el-table-column>
-          <el-table-column prop="schedule" label="周值班安排" width="170">
+          <el-table-column prop="schedule" label="周值班安排" width="200">
           </el-table-column>
           <el-table-column label="操作">
             <template slot-scope="scope">
