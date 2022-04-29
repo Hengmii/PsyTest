@@ -506,6 +506,7 @@ export default {
       }
       this.checkSchedule=week.reduce((pre,item)=>{
         pre.push(this.check_val.includes(item)?1:0)
+        console.log("schedule",pre)
         return pre
       },[]);
        saveApi({...this.toModifyForm,schedule_arr:this.checkSchedule,identity:2}).then(res=>{
